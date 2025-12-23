@@ -11,6 +11,7 @@ import Apartment from './pages/Apartment.jsx'
 import ApartmentDetail from './components/ApartmentDetail.jsx'
 import ApartmentList from './components/ApartmentList.jsx'
 import ApartmentFilter from './components/ApartmentFilter.jsx'
+import ApartmentResult from './pages/Apartement/ApartementResult.jsx'
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         <Route path='/apartments' element={<Apartment />} />
         <Route path='/apartment/list' element={<ApartmentList />} />
         <Route path='/apartment/filter' element={<ApartmentFilter />} />
+        <Route path="/apartments/result" element={<ApartmentResult />} />
+        <Route path="/apartments/:id" element={<ApartmentDetail />} />
+
       </Routes>
     </BrowserRouter>
   )

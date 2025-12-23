@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-export default function ApartmentList({ filters = {}, onBack }) {
+export default function ApartmentList({ filters }) {
   const navigate = useNavigate()
 
   const apartments = [
@@ -23,35 +23,23 @@ export default function ApartmentList({ filters = {}, onBack }) {
   ]
 
   const filtered = apartments.filter((apt) => {
-    if (filters.type && apt.type !== filters.type) return false
-    if (filters.bedrooms && apt.bedrooms !== Number(filters.bedrooms)) return false
-    if (filters.minPrice && apt.price < Number(filters.minPrice)) return false
-    if (filters.maxPrice && apt.price > Number(filters.maxPrice)) return false
+    if (filters.roomType && apt.type !== filters.roomType) return false
+
+    if (
+      filters.floor &&
+      filters.floor !== "semua" &&
+      apt.bedrooms !== Number(filters.floor)
+    ) {
+      return false
+    }
+
     return true
   })
 
+
+
   return (
     <div className="animate-fadeIn">
-
-      {/* HEADER */}
-      <div className="mb-10 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h2 className="text-3xl font-extrabold text-gray-900">
-            Hasil Pencarian
-          </h2>
-          <p className="text-gray-500">
-            {filtered.length} unit tersedia sesuai filter Anda
-          </p>
-        </div>
-
-        <button
-          onClick={onBack}
-          className="mt-3 md:mt-0 inline-flex items-center gap-1 text-sm font-semibold
-            text-gray-700 hover:underline"
-        >
-          ← Ubah Filter
-        </button>
-      </div>
 
       {/* GRID */}
       {filtered.length === 0 ? (
